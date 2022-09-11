@@ -1,8 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
 import Wallet from "./slices/wallet";
-import thunk from "redux-thunk";
+import user from "./slices/user";
 export default configureStore({
     reducer:{
-        wallet: Wallet
+        wallet: Wallet,
+        user: user
     }
 })

@@ -19,13 +19,11 @@ import {
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
-
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function App() {
   const network = WalletAdapterNetwork.Devnet;
-  const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-
+  const endpoint = useMemo(() => "http://127.0.0.1:8899", []);
   const wallets = [new PhantomWalletAdapter()];
 
   // set the colormode to dark

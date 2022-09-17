@@ -74,7 +74,7 @@ function Navigation() {
         mx-auto max-w-[calc(100vw_-_10%)] flex items-center justify-between"
     >
       <div className={"text-4xl font-bold tracking-wide"}>KAHE</div>
-      <div className="hidden lg:flex justify-around space-x-10">
+      <div className=" lg:flex justify-around space-x-10">
         {links.map((item) => {
           return (
             <Button

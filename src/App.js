@@ -10,22 +10,16 @@ import {
 } from "@solana/wallet-adapter-react";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
-  FakeWalletAdapter,
   PhantomWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import {
-  WalletModalProvider,
-  WalletDisconnectButton,
-  WalletMultiButton,
-} from "@solana/wallet-adapter-react-ui";
-import { clusterApiUrl } from "@solana/web3.js";
+import Events from "./pages/Events";
+import AddEvent from './pages/admin/AddEvent';
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 function App() {
   const network = WalletAdapterNetwork.Devnet;
   const endpoint = useMemo(() => "http://127.0.0.1:8899", []);
   const wallets = [new PhantomWalletAdapter()];
-
   // set the colormode to dark
   const { colorMode, toggleColorMode } = useColorMode();
   useEffect(() => {
@@ -39,13 +33,13 @@ function App() {
       <Router>
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect>
-            
-
               <Navigation />
               <Routes>
                 <Route path="/" element={<>Hello</>}></Route>
                 <Route path="/clubs" element={<Clubs></Clubs>}></Route>
                 <Route path="/tweets" element={<Tweets></Tweets>}></Route>
+                <Route path="/events" element={<Events></Events>}></Route>
+                <Route path="/admin/events" element={<AddEvent/>}></Route>
               </Routes>
           </WalletProvider>
         </ConnectionProvider>

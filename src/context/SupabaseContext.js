@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 // import client from "../supabase/client";
-const SupabaseContext =  createContext()
+const SupabaseContext = createContext();
 
 export default SupabaseContext;

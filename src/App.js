@@ -13,6 +13,7 @@ import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets';
 import Events from './pages/Events';
 import Event from './pages/admin/Events';
 import EditEvent from './pages/edit/EditEvent';
+import { AnimateSharedLayout } from 'framer-motion';
 require('@solana/wallet-adapter-react-ui/styles.css');
 
 function App() {
@@ -33,14 +34,16 @@ function App() {
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect>
             <Navigation />
-            <Routes>
-              <Route path='/' element={<>Hello</>}></Route>
-              <Route path='/clubs' element={<Clubs></Clubs>}></Route>
-              <Route path='/tweets' element={<Tweets></Tweets>}></Route>
-              <Route path='/events' element={<Events></Events>}></Route>
-              <Route path='/admin/events' element={<Event />}></Route>
-              <Route path='/edit/event/:id' element={<EditEvent />}></Route>
-            </Routes>
+            <AnimateSharedLayout>
+              <Routes>
+                <Route path='/' element={<>Hello</>}></Route>
+                <Route path='/clubs' element={<Clubs></Clubs>}></Route>
+                <Route path='/tweets' element={<Tweets></Tweets>}></Route>
+                <Route path='/events' element={<Events></Events>}></Route>
+                <Route path='/admin/events' element={<Event />}></Route>
+                <Route path='/edit/event/:id' element={<EditEvent />}></Route>
+              </Routes>
+            </AnimateSharedLayout>
           </WalletProvider>
         </ConnectionProvider>
       </Router>

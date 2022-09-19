@@ -27,6 +27,7 @@ import MdViewer from '../../components/MdViewer';
 import { useNavigate, useParams } from 'react-router-dom';
 import SupabaseContext from '../../context/SupabaseContext';
 import fetchEvents from '../../api/fetch-events';
+import deleteEvent from '../../api/delete-event';
 
 function Event() {
   const [markdown, setMarkdown] = useState('');
@@ -57,7 +58,29 @@ function Event() {
   const handleClick = useCallback((id) => {
     // console.log(e)
     navigate(`/edit/event/${id}`);
-  });
+  },[]);
+
+  const handleDelete = useCallback((id) => {
+    console.log(id)
+    deleteEvent(supabase, id).then(finish=>{
+      if(finish){
+        fetchEvents(supabase)
+      .then((data) => {
+        setEvents(data);
+      })
+      .catch((error) => {
+        toast({
+          title: 'Unable to load events',
+          description: error,
+          colorScheme: 'red',
+          icon: <IconX />,
+          variant: 'left-accent',
+          position: 'bottom-right',
+        });
+      });
+      }
+    }).catch()
+  },[]);
 
   return (
     <div className='max-w-3xl h-[80vh] mx-auto '>
@@ -83,7 +106,7 @@ function Event() {
                 >
                   Edit post
                 </Button>
-                <Button leftIcon={<IconTrash />} colorScheme={'red'}>
+                <Button onClick={()=>{handleDelete(event.id)}} leftIcon={<IconTrash />} colorScheme={'red'}>
                   Delete post
                 </Button>
               </div>

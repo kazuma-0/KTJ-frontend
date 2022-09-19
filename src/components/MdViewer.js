@@ -5,7 +5,7 @@ function MdViewer(props) {
     <div
       className='unreset'
       dangerouslySetInnerHTML={{
-        __html: marked(`${props.markdown} <style>${props.css}</style>`),
+        __html: `${props.markdown} <style>${props.css}</style>`,
       }}
     ></div>
     // </TabPanel>

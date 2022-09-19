@@ -4,12 +4,13 @@ import programming from '../assets/programming.png';
 import blockchain from '../assets/blockchain.png';
 import cybersecurity from '../assets/cybersecurity.png';
 import ai from '../assets/ai.png';
+import { AnimatePresence, motion } from 'framer-motion';
 const clubs = [
   {
     name: 'Programming club',
     image: programming,
     description:
-    "Matrix is a great way to get involved with coding and computer science on campus! It's a great way to meet other students who are interested in the same things, and to learn more about what coding can do. The club meets regularly to work on projects and discuss new ideas, and members often have the opportunity to present their work at conferences and other events.",
+      "Matrix is a great way to get involved with coding and computer science on campus! It's a great way to meet other students who are interested in the same things, and to learn more about what coding can do. The club meets regularly to work on projects and discuss new ideas, and members often have the opportunity to present their work at conferences and other events.",
     club_name: 'Matrix',
     bgColor: '#3498db',
   },
@@ -42,38 +43,43 @@ const clubs = [
     image: ai,
     description:
       'Alphabots club in college is a great way to get involved in the latest and greatest technology. The club meets regularly to discuss new advancements in the field, and members have access to exclusive resources and events. The club is also a great way to network with other students who are interested in AI/ML.',
-    club_name: 'Aplhabots',
+    club_name: 'Alphabots',
     bgColor: '#9b59b6',
   },
 ];
 function Clubs() {
   return (
-    <div className='container mx-auto max-w-[calc(100vw_-_200px)]'>
-      <div className='grid lg:grid-cols-4 gap-10 pb-10'>
-        {clubs.map((club) => (
-          <Box p={3} borderWidth='1px' borderRadius='lg' overflow='hidden' className='hover:scale-[101%] hover:ring-1 ring-white/30 hover:ring-offset-2 transition-all'>
-            <Image
-              src={club.image}
-              alt={'img'}
-              className='rounded shaodw-lg'
-            ></Image>
-            <Box
-              display='flex'
-              flexDirection={'column'}
-              alignItems={'baseline'}
+    <AnimatePresence>
+      <motion.div  className='container mx-auto px-5 lg:px-0 lg:max-w-[calc(100vw_-_200px)]'>
+        <div className='grid grid-cols1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10'>
+          {clubs.map((club) => (
+            <motion.div
+            initial={{opacity:0, scale:0}} whileInView={{opacity:1, scale:1}} viewport={{margin:"-100px"}}
+              className='p-3 ring-1 rounded-lg overflow-hidden hover:scale-[101%] border-white hover:ring-1 dark:ring-white/30 ring-black hover:ring-offset-2 transition-all'
             >
-              <Text fontSize={'xl'} className={'uppercase font-bold'}>
-                {club.name}
-              </Text>
-              <Badge backgroundColor={club.bgColor} mt={2} color={'black'}>
-                {club.club_name}
-              </Badge>
-              <Text p={3}>{club.description}</Text>
-            </Box>
-          </Box>
-        ))}
-      </div>
-    </div>
+              <Image
+                src={club.image}
+                alt={'img'}
+                className='rounded shaodw-lg'
+              ></Image>
+              <Box
+                display='flex'
+                flexDirection={'column'}
+                alignItems={'baseline'}
+              >
+                <Text fontSize={'xl'} className={'uppercase font-bold'}>
+                  {club.name}
+                </Text>
+                <Badge backgroundColor={club.bgColor} mt={2} color={'black'}>
+                  {club.club_name}
+                </Badge>
+                <Text p={3}>{club.description}</Text>
+              </Box>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

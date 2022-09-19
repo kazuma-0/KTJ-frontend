@@ -167,11 +167,11 @@ function Tweets() {
         className='scroll col-span-2 p-5  w-[calc(100%_-_350px)] overflow-x-auto'
       >
         {!wallet.publicKey ? (
-          <div className='py-5 bg-[#1E1D1A] text-lg rounded-lg shadow-xl px-5 ring-2 ring-white/40'>
+          <div className='py-5 bg-[#1a202c] text-lg rounded-lg shadow-xl px-5 ring-2 ring-white/40'>
             Sign-in with your wallet to post new tweet.
           </div>
         ) : (
-          <div className='px-5 py-5 bg-[#1C1A1E] rounded-lg shadow-xl outline-sky-400 ring-2 ring-white/75'>
+          <div className='px-5 py-5 bg-[#1a202c] rounded-lg shadow-xl outline-sky-400 ring-2 ring-white/75'>
             <h1 className='py-2 text-xl uppercase'>Post a new Tweet</h1>
             <Input
               isInvalid={topic?.count > 50}

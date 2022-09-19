@@ -53,22 +53,22 @@ function EditorLayout(props) {
           </TabPanel>
           <TabPanel>
             <MdViewer markdown={markdown} css={css} />
+            <div className='flex w-full justify-end pr-5 py-5'>
+              {markdown ? (
+                <Button
+                  variant='solid'
+                  leftIcon={<IconPencil />}
+                  colorScheme={'whatsapp'}
+                >
+                  Submit
+                </Button>
+              ) : (
+                ''
+              )}
+            </div>
           </TabPanel>
         </TabPanels>
       </Tabs>
-      <div className='flex w-full justify-end pr-5 py-5'>
-        {markdown ? (
-          <Button
-            variant='solid'
-            leftIcon={<IconPencil />}
-            colorScheme={'whatsapp'}
-          >
-            Submit
-          </Button>
-        ) : (
-          ''
-        )}
-      </div>
     </div>
   );
 }

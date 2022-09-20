@@ -34,7 +34,7 @@ function App() {
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect>
             <Navigation />
-            <AnimateSharedLayout>
+            {/* <AnimateSharedLayout> */}
               <Routes>
                 <Route path='/' element={<>Hello</>}></Route>
                 <Route path='/clubs' element={<Clubs></Clubs>}></Route>
@@ -43,7 +43,7 @@ function App() {
                 <Route path='/admin/events' element={<Event />}></Route>
                 <Route path='/edit/event/:id' element={<EditEvent />}></Route>
               </Routes>
-            </AnimateSharedLayout>
+            {/* </AnimateSharedLayout> */}
           </WalletProvider>
         </ConnectionProvider>
       </Router>

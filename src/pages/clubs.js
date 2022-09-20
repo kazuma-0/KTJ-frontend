@@ -5,6 +5,8 @@ import blockchain from '../assets/blockchain.png';
 import cybersecurity from '../assets/cybersecurity.png';
 import ai from '../assets/ai.png';
 import { AnimatePresence, motion } from 'framer-motion';
+import Club from '../components/club';
+import { useState } from 'react';
 const clubs = [
   {
     name: 'Programming club',
@@ -48,19 +50,31 @@ const clubs = [
   },
 ];
 function Clubs() {
+  function closeScreen(){
+    setSelected(null)
+  }
+  console.log(clubs)
+  const [selected, setSelected] = useState(null);
   return (
-    <AnimatePresence>
-      <motion.div  className='container mx-auto px-5 lg:px-0 lg:max-w-[calc(100vw_-_200px)]'>
+    <AnimatePresence type="crossfade" mode="wait">
+      <motion.div className='container mx-auto px-5 lg:p-2 lg:max-w-[calc(100vw_-_210px)] overflow-x-hidden' >
         <div className='grid grid-cols1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10'>
-          {clubs.map((club) => (
+          {clubs.map((club, index) => (
             <motion.div
-            initial={{opacity:0, scale:0}} whileInView={{opacity:1, scale:1}} viewport={{margin:"-100px"}}
+              key={index+1}
+              layoutId={index+1}
+              onClick={() => setSelected(index+1)}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              // exit={{opacity:0}}
+              // viewport={{ margin:"-100px" }}
               className='p-3 ring-1 rounded-lg overflow-hidden hover:scale-[101%] border-white hover:ring-1 dark:ring-white/30 ring-black hover:ring-offset-2 transition-all'
             >
+              {console.log(index)}
               <Image
                 src={club.image}
                 alt={'img'}
-                className='rounded shaodw-lg'
+                className='rounded-lg shadow-lg mb-5'
               ></Image>
               <Box
                 display='flex'
@@ -79,6 +93,7 @@ function Clubs() {
           ))}
         </div>
       </motion.div>
+      {selected && <Club closeScreen={closeScreen} id={selected} />}
     </AnimatePresence>
   );
 }
